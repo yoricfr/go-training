@@ -27,3 +27,5 @@ can't see anything happening (nothing in ~/go/pkg nor in ~/go/bin)
 
 When creating software today, you can use code that other people have written. You can call this other code packages, modules, libraries or dependencies. If you use other people's code in your code, then your code is dependent upon other people's code. Your code now has dependencies.
 Managing these packages / libraries / modules / dependencies (call it what you will) is what package management is all about.
+
+https://blog.golang.org/using-go-modules
