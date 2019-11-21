@@ -4,6 +4,9 @@ https://docs.google.com/document/d/18-0u5CvNIr83oOfMXPoM4klVFASXGl3Vvua1wBGMIoQ/
 ## Video descriptions
 https://docs.google.com/document/d/1nt5bYAAS5sTVF6tpLaFLDHQzo5BNkcr4b507fg3ZPwM/edit
 
+## Course outline
+https://docs.google.com/document/d/1ckYpi6hcRkaBUEk975f54oGsHYHu7GhzOk7-nOrkNxo/edit
+
 ## Course presentations
 https://drive.google.com/drive/folders/0B22KXlqHz6ZNfjNXTzk1U3JHUkJ6VjJ3dnJKNzVtNjRUM3Q2WFNqWGI2Q3RadERqUlVrOEU
 
