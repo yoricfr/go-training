@@ -38,3 +38,6 @@ https://forum.golangbridge.org/c/getting-help
 
 ## Go concurrency
 http://www.doxsey.net/blog/go-concurrency-from-the-ground-up
+
+## Bit operations in Go
+https://medium.com/learning-the-go-programming-language/bit-hacking-with-go-e0acee258827
