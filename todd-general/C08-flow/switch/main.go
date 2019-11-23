@@ -16,4 +16,7 @@ func main() {
 		fmt.Println("Default")
 	}
 	fmt.Println(i)
+
+	var t interface{} = "2"[0]
+	fmt.Printf("%q %T\n", t, t)
 }
