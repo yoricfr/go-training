@@ -6,7 +6,7 @@ import (
 	"sync"
 )
 
-var wg1, wg2 sync.WaitGroup
+var wg, wg1, wg2 sync.WaitGroup
 
 func main() {
 	wg1.Add(10)
@@ -15,6 +15,7 @@ func main() {
 	go cos()
 	wg1.Wait()
 	wg2.Wait()
+	main2()
 }
 
 func sin() {
@@ -28,4 +29,17 @@ func cos() {
 		fmt.Println("**cos:**", math.Cos(float64(i)*.113))
 		wg2.Done()
 	}
+}
+
+func main2() {
+	wg.Add(2)
+	go func() {
+		fmt.Println("Hello")
+		wg.Done()
+	}()
+	go func() {
+		fmt.Println("Goodbye")
+		wg.Done()
+	}()
+	wg.Wait()
 }
