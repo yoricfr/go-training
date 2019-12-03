@@ -1,0 +1,3 @@
+# Solution
+
+go env GOPATH
