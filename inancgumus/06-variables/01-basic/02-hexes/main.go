@@ -1,0 +1,19 @@
+package main
+
+import "fmt"
+
+func main() {
+	fmt.Println("0 1 2 3 4 5 6 7 8 9")
+	fmt.Println("A B C D E F")
+	fmt.Println("11")
+	fmt.Println("19")
+	fmt.Println(32)
+	fmt.Println("64")
+	fmt.Println("---")
+	fmt.Println(0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8, 0x9)
+	fmt.Println(0xa, 0xb, 0xc, 0xd, 0xe, 0xf)
+	fmt.Println(0x11)
+	fmt.Println(0x19)
+	fmt.Println(0x32)
+	fmt.Println(0x64)
+}
