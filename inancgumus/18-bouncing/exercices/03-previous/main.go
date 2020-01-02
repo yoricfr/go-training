@@ -1,11 +1,3 @@
-// Copyright © 2018 Inanc Gumus
-// Learn Go Programming Course
-// License: https://creativecommons.org/licenses/by-nc-sa/4.0/
-//
-// For more tutorials  : https://learngoprogramming.com
-// In-person training  : https://www.linkedin.com/in/inancgumus/
-// Follow me on twitter: https://twitter.com/inancgumus
-
 package main
 
 import (
@@ -13,31 +5,38 @@ import (
 	"time"
 
 	"github.com/inancgumus/screen"
+	"github.com/mattn/go-runewidth"
 )
 
 func main() {
 	const (
-		width  = 50
-		height = 10
-
 		cellEmpty = ' '
 		cellBall  = '⚾'
 
 		maxFrames = 1200
 		speed     = time.Second / 20
 
-		// drawing buffer length
-		// *2 for extra spaces
-		// +1 for newlines
-		bufLen = (width*2 + 1) * height
+		ivx, ivy = 5, 2
 	)
 
 	var (
-		px, py int    // ball position
-		vx, vy = 1, 1 // velocities
+		px, py       int // ball position
+		prevx, prevy int // previous ball position
+
+		vx, vy = ivx, ivy // velocities
 
 		cell rune // current cell (for caching)
 	)
+
+	// you can get the width and height using the screen package easily:
+	width, height := screen.Size()
+
+	// get the rune width of the ball emoji
+	ballWidth := runewidth.RuneWidth(cellBall)
+
+	// adjust the width and height
+	width /= ballWidth
+	height-- // there is a 1 pixel border in my terminal
 
 	// create the board
 	board := make([][]bool, width)
@@ -45,8 +44,12 @@ func main() {
 		board[column] = make([]bool, height)
 	}
 
+	// drawing buffer length
+	// *2 for extra spaces
+	// +1 for newlines
+	bufLen := (width*2 + 1) * height
+
 	// create a drawing buffer
-	// BUG FIXED!
 	buf := make([]rune, 0, bufLen)
 
 	// clear the screen once
@@ -58,22 +61,22 @@ func main() {
 		py += vy
 
 		// when the ball hits a border reverse its direction
-		if px <= 0 || px >= width-1 {
+		if px <= 0 || px >= width-vx {
 			vx *= -1
 		}
-		if py <= 0 || py >= height-1 {
+		if py <= 0 || py >= height-vy {
 			vy *= -1
 		}
 
 		// remove the previous ball
-		for y := range board[0] {
-			for x := range board {
-				board[x][y] = false
-			}
-		}
+		board[prevx][prevy] = false
 
 		// put the new ball
 		board[px][py] = true
+
+		// Update the previous position
+		prevx = px
+		prevy = py
 
 		// rewind the buffer (allow appending from the beginning)
 		buf = buf[:0]

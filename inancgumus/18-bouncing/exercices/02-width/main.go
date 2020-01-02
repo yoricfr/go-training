@@ -1,35 +1,23 @@
-// Copyright © 2018 Inanc Gumus
-// Learn Go Programming Course
-// License: https://creativecommons.org/licenses/by-nc-sa/4.0/
-//
-// For more tutorials  : https://learngoprogramming.com
-// In-person training  : https://www.linkedin.com/in/inancgumus/
-// Follow me on twitter: https://twitter.com/inancgumus
-
 package main
 
 import (
 	"fmt"
+	"log"
+	"syscall"
 	"time"
 
 	"github.com/inancgumus/screen"
+	"github.com/mattn/go-runewidth"
+	"golang.org/x/crypto/ssh/terminal"
 )
 
 func main() {
 	const (
-		width  = 50
-		height = 10
-
 		cellEmpty = ' '
 		cellBall  = '⚾'
 
 		maxFrames = 1200
 		speed     = time.Second / 20
-
-		// drawing buffer length
-		// *2 for extra spaces
-		// +1 for newlines
-		bufLen = (width*2 + 1) * height
 	)
 
 	var (
@@ -39,6 +27,21 @@ func main() {
 		cell rune // current cell (for caching)
 	)
 
+	width, height, err := terminal.GetSize(syscall.Stdin)
+	if err != nil {
+		log.Fatal("Could not get the Terminal size.")
+	}
+
+	ballWidth := runewidth.RuneWidth(cellBall)
+	width /= ballWidth
+	height--
+
+	// drawing buffer length
+	//
+	// *2 for extra spaces
+	// +1 for newlines
+	bufLen := (width*2 + 1) * height
+
 	// create the board
 	board := make([][]bool, width)
 	for column := range board {
@@ -46,7 +49,6 @@ func main() {
 	}
 
 	// create a drawing buffer
-	// BUG FIXED!
 	buf := make([]rune, 0, bufLen)
 
 	// clear the screen once
